@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sweepint trainer for curling">
+  <meta name="author" content="Mauro Frigerio">
+  <title>Curling Sweeping Trainer</title>
+
+  <link rel="canonical" href="https://frigi.ch">
+
+
+
+  <!-- Bootstrap core CSS -->
+  <!-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+</head>
+
+
+  <!-- ************************************** -->
+  <!-- *                                      -->
+  <!-- *   Style for background               -->
+  <!-- *                                      -->
+  <!-- ************************************** -->
+
+<style>
+  .bg-cover {
+  background-size: cover !important;
+  background: url(curling-top.jpg) no-repeat bottom center;
+  }
+
+  @media (min-width: 1200px) {
+    .bg-cover {
+    background-size: cover !important;
+    background: url(curling-top-horizontal.jpg) no-repeat bottom center;
+    }
+  }
+</style>
+
+<body onload="setStartValues()" style="padding-top: 50px;">
+
+
+  <!-- ************************************** -->
+  <!-- *                                      -->
+  <!-- *   Navbar section                     -->
+  <!-- *                                      -->
+  <!-- ************************************** -->
+
+<nav class="navbar container-fluid fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-uppercase" href="#">Sweeping trainer</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-uppercase" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-uppercase" href="#settings">Settings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-uppercase" href="#about">About</a>
+        </li>
+      </ul>
+      <span class="navbar-text d-none d-lg-block">
+        alpha version 0.0000
+      </span>
+    </div>
+  </div>
+</nav>
+
+
+<main>  
+
+
+  <!-- ************************************** -->
+  <!-- *                                      -->
+  <!-- *   First section                      -->
+  <!-- *                                      -->
+  <!-- ************************************** -->
+
+  <section id="training-bg" class="container-fluid text-center p-5 vh-100 bg-cover">
+    <div class="row h-25"> 
+      <div class="col d-none d-md-block">
+        <p class="lead">Welcome to Sweeping Training website, this is a small web application that help for home training.</p>
+      </div>
+    </div>
+    <div class="row h-50">
+      <div class="col">
+        <p id="_timer" class="display-5 fw-bolder">Ready?</p>
+        <p id="helpText" class="lead fw-normal">Press start to begin your curling sweeping training.</p>
+        <button id="btn-start-stop" class="btn btn-outline-secondary shadow" type="button" onclick="timerStartStop()">Start!</button>
+        <!-- <button class="btn btn-primary" type="button" onclick="playSound('one')">TEST</button> -->
+      </div>
+    </div>
+    <div class="row  h-25">
+      <div class="col pt-5">
+        <div id="divProgressBar" class="progress shadow-lg d-none">
+          <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated shadow-lg" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 1%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ************************************** -->
+  <!-- *                                      -->
+  <!-- *   Settings section                   -->
+  <!-- *                                      -->
+  <!-- ************************************** -->
+
+  <section id="settings" class="container bg-primary bg-gradient text-center text-white pt-3 px-3 pt-md-5 px-md-5 shadow">
+    <div class="">
+      <div class="my-3 py-3">
+        <h2 class="display-5 p-1">Settings</h2>
+        <p class="lead">You can personalise your trainig experience.</p>
+      </div>
+      <div class="bg-light shadow-sm mx-auto" style="width: 80%; border-radius: 21px 21px 0 0;">
+        <div class="container">
+
+          <div class="row py-3">
+            <p class="lead text-primary">This information are not stored in your browser and you need to reset after every refresh of this page.</p>
+          </div>
+
+          <div class="row py-3 px-2">
+            <div class="col">
+              <span class="text-primary float-start align-middle">Sweeping time [s]</span>
+            </div>
+            <div class="col input-group">
+              <input type="text" id="sweepingTimeValue" class="form-control" value="15" readonly>
+              <button id="sweepingTime-minus" class="btn btn-outline-secondary" type="button" onclick="sweepingTimeMinus()" style="width: 2em">-</button>
+              <button id="sweepingTime-plus" class="btn btn-outline-secondary" type="button" onclick="sweepingTimePlus()" style="width: 2em">+</button>
+            </div>
+          </div>
+
+          <div class="row py-3 px-2">
+            <div class="col">
+              <span class="text-primary float-start align-middle">Pause time [s]</span>
+            </div>
+            <div class="col input-group">
+              <input type="text" id="pauseTimeValue" class="form-control" value="60" readonly>
+              <button id="pauseTime-minus" class="btn btn-outline-secondary" type="button" style="width: 2em" onclick="pauseTimeMinus()">-</button>
+              <button id="pauseTime-plus" class="btn btn-outline-secondary" type="button" style="width: 2em" onclick="pauseTimePlus()">+</button>
+            </div>
+          </div>
+
+          <div class="row py-3 px-2">
+            <div class="col">
+              <span class="text-primary float-start align-middle">Repetitions</span>
+            </div>
+            <div class="col input-group">
+              <input type="text" id="repetitionsValue" class="form-control" value="5" readonly>
+              <button id="repetitions-minus" class="btn btn-outline-secondary" type="button" style="width: 2em" onclick="repetitionsMinus()">-</button>
+              <button id="repetitions-plus" class="btn btn-outline-secondary" type="button" style="width: 2em" onclick="repetitionsPlus()">+</button>
+            </div>
+          </div>
+
+          <div class="row py-3 px-2 pb-5">
+            <div class="col">
+              <span class="text-primary float-start align-middle">Audio option</span>
+            </div>
+            <div class="col input-group">
+              <select id="audioOption" class="form-select" aria-label="Select audio help option"> 
+                <!-- disabled -->
+                <option value="none"selected>none</option>
+                <option value="whistle">whistle</option>
+                <option value="skip" disabled>skip</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ************************************** -->
+  <!-- *                                      -->
+  <!-- *   About Section                      -->
+  <!-- *                                      -->
+  <!-- ************************************** -->
+
+  <section id="about" class="">
+    <div id="settings" class="container bg-secondary bg-gradient text-center text-white pt-3 px-3 pt-md-5 px-md-5 shadow">
+      <div class="">
+        <div class="my-3 py-3">
+          <h2 class="display-5 p-1">About</h2>
+          <p class="lead">me and this site/project</p>
+        </div>
+        <div class="bg-light shadow-sm mx-auto" style="width: 80%; border-radius: 21px 21px 0 0;">
+          <div class="container">
+            <div class="row py-3 px-3">
+              <div class="col lead text-secondary">
+                <p>This is my holliday project in this special time with most of the curling club that are closed due to Covid19.</p>
+                <p>I am an amateur curler from Switzerland</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ************************************** -->
+<!-- *                                      -->
+<!-- *   Footer section                     -->
+<!-- *                                      -->
+<!-- ************************************** -->
+
+<footer class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md pb-4">
+      <h5 class="text-uppercase">Sweeping Trainer</h5>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Licence</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="link-secondary" href="#">GPL</a></li>
+        <li><a class="link-secondary" href="#">Credits</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Code</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="link-secondary" href="#">GitHub Repository</a></li>
+        <li><a class="link-secondary" href="#">Issues / Questions</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+<!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.js" integrity="sha512-J+vDCDlH9TYo4uL0R5g9TCvJj8oGATXWi17AcOyUhuyEbJf0SF5HSmKv1gwPCEowauPanV0RAaYjyU+kbowtQg==" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.core.min.js" integrity="sha512-wzeZyTAYqFv+VKD/mGwXREXBIzy4pE3E617SBskkLFuYcPQgX6px2Il3gwZwXb9DuyjYPIsbTEO/6c3+mUvoPA==" crossorigin="anonymous"></script>
+
+<!-- ************************************** -->
+<!-- *                                      -->
+<!-- *   JavaSCript section                 -->
+<!-- *                                      -->
+<!-- ************************************** -->
+
+<script>
+var timer;
+var startTime;
+var sweepingTime = 3 * 1000; // ms
+var pauseTime = 5 * 1000;  // ms
+var repetitions = 5;
+var repetitionsCount = 1;
+var startTime = 0; //ms
+var status = "sweeping"; // "sweeping", "pause"
+
+var soundWhistle = new Howl({
+  src: ['sound/whistle.webm', 'sound/whistle.mp3'],
+  sprite: {
+    one: [0, 1000],
+    end: [0, 4460]
+  }
+});
+
+var soundSkip = new Howl({
+  src: ['sound/skip.webm', 'sound/skip.mp3'],
+  sprite: {
+    one: [0, 1000],
+    end: [0, 4460]
+  }
+});
+
+function timerStartStop() {
+  switch (document.getElementById("btn-start-stop").innerHTML) {
+    case "Start!":
+      document.getElementById("btn-start-stop").innerHTML = "Stop";
+      document.getElementById("progressBar").style.width = "1%";
+      timer = setInterval(timeRefresh, 10);
+      document.getElementById("_timer").innerHTML = "inizio conteggio";
+      repetitionsCount = 1;
+      document.getElementById("divProgressBar").classList.remove("d-none");
+      document.getElementById("training-bg").classList.remove("bg-cover");
+      startTime = Date.now();
+      status = "sweeping";
+      styleTrainingSweeping();
+      
+      break;
+    case "Stop":
+      stop();
+      clearInterval(timer);
+      document.getElementById("btn-start-stop").innerHTML = "Start!";
+      document.getElementById("_timer").innerHTML = "Ready?";
+      break;
+    default:
+  }
+}
+
+function timeRefresh () {
+  let currentTime = Date.now();
+  let elapsed = currentTime - startTime; // ms
+  if (status === "sweeping") {
+    if (elapsed >= sweepingTime) {
+      status = "pause";
+      styleTrainingPause();
+      startTime = currentTime;
+    } else {
+      document.getElementById("_timer").innerHTML = timeToString(elapsed);
+    }
+  } else if (status ===  "pause") {
+    if (elapsed >= pauseTime) {
+      repetitionsCount++;
+      status = "sweeping";
+      styleTrainingSweeping();
+      startTime = currentTime;
+      if (repetitionsCount > repetitions) {
+        stop();
+      } else {
+        updateProgressBar();
+      }
+    } else if (repetitionsCount === repetitions) {
+      document.getElementById("_timer").innerHTML = "Training completed!";
+      playSound('end');
+      stop();
+    } else {
+      document.getElementById("_timer").innerHTML = timeToString(elapsed);
+    }
+  }
+}
+
+function stop() {
+  clearInterval(timer);
+  document.getElementById("btn-start-stop").innerHTML = "Start!";
+  document.getElementById("divProgressBar").classList.add("d-none");
+  styleTrainingStop();
+}
+
+function timeToString(ms) {
+  let rounded = ms / 1000;
+  return rounded.toFixed(1);
+}
+
+function updateProgressBar() {
+  document.getElementById("progressBar").style.width = (((repetitionsCount-1)/repetitions)*100)-2+"%";
+}
+
+
+// Style functions
+function styleTrainingSweeping() {
+  styleTrainingStop();
+  playSound('one');
+  document.getElementById("training-bg").classList.add("bg-success");
+  document.getElementById("btn-start-stop").classList.remove("btn-outline-secondary");
+  document.getElementById("btn-start-stop").classList.add("btn-outline-dark");
+  document.getElementById("helpText").innerHTML = "SWEEPING TIME!";
+  document.getElementById("training-bg").classList.remove("bg-cover");
+}
+
+function styleTrainingPause() {
+  styleTrainingStop();
+  playSound('one');
+  document.getElementById("training-bg").classList.add("bg-warning");
+  document.getElementById("btn-start-stop").classList.remove("btn-outline-secondary");
+  document.getElementById("btn-start-stop").classList.add("btn-outline-dark");
+  document.getElementById("helpText").innerHTML = "pause time";
+  document.getElementById("training-bg").classList.remove("bg-cover");
+}
+
+function styleTrainingStop() {
+  document.getElementById("training-bg").classList.remove("bg-warning");
+  document.getElementById("training-bg").classList.remove("bg-success");
+  document.getElementById("btn-start-stop").classList.remove("btn-outline-dark");
+  document.getElementById("btn-start-stop").classList.add("btn-outline-secondary");
+  document.getElementById("helpText").innerHTML = "You can start another session";
+  // document.getElementById("_timer").innerHTML = "Ready?";
+  document.getElementById("training-bg").classList.add("bg-cover");
+}
+
+function playSound(position) {
+  
+  switch (document.getElementById("audioOption").value) {
+    case "none":
+      break;
+
+    case "whistle":
+        soundWhistle.play(position);
+      break;
+
+    case "skip":
+        soundSkip.play(position);
+      break;
+
+    default:
+  }
+
+}
+
+// Settings value functions
+
+function setStartValues(){
+  document.getElementById("sweepingTimeValue").value = sweepingTime / 1000;
+  document.getElementById("pauseTimeValue").value = pauseTime / 1000;
+  document.getElementById("repetitionsValue").value = repetitions;
+}
+
+function sweepingTimeMinus() {
+  if (sweepingTime > 1000) {
+    sweepingTime = ((sweepingTime / 1000)-1) * 1000;
+
+    document.getElementById("sweepingTimeValue").value = sweepingTime / 1000;
+  }
+}
+
+function sweepingTimePlus() {
+  sweepingTime = ((sweepingTime / 1000)+1) * 1000;
+
+  document.getElementById("sweepingTimeValue").value = sweepingTime / 1000;
+}
+
+function pauseTimeMinus() {
+  if (pauseTime > 1000) {
+    pauseTime = ((pauseTime / 1000)-1) * 1000;
+
+    document.getElementById("pauseTimeValue").value = pauseTime / 1000;
+  }
+}
+
+function pauseTimePlus() {
+  pauseTime = ((pauseTime / 1000)+1) * 1000;
+
+  document.getElementById("pauseTimeValue").value = pauseTime / 1000;
+}
+
+function repetitionsMinus() {
+  if (repetitions > 1) {
+    repetitions = repetitions - 1;
+
+    document.getElementById("repetitionsValue").value = repetitions;
+  }
+}
+
+function repetitionsPlus() {
+  repetitions = repetitions + 1;
+
+  document.getElementById("repetitionsValue").value = repetitions;
+}
+</script>
+
+</body>
+</html>
