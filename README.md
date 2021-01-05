@@ -14,6 +14,9 @@ I am not a software engineer but if you have some ideas or you can write some co
 - no cookies and no tracking
 - host the website on your server
 
+## Website link
+https://sweeping.frigi.ch
+
 ## Next improvements
 
 - improve the website style and my English translations
