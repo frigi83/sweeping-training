@@ -9,6 +9,7 @@ I am not a software engineer but if you have some ideas or you can write some co
 ## Features
 
 - standalone web application, you need only a recent browser
+- mobile and desktop ready (responsive layout)
 - personalize all parameters (sweeping and pause time, repetition and ...)
 - no cookies and no tracking
 - host the website on your server
