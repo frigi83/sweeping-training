@@ -27,13 +27,13 @@
 <style>
   .bg-cover {
   background-size: cover !important;
-  background: url(curling-top.jpg) no-repeat bottom center;
+  background: url(images/curling-top.jpg) no-repeat bottom center;
   }
 
   @media (min-width: 1200px) {
     .bg-cover {
     background-size: cover !important;
-    background: url(curling-top-horizontal.jpg) no-repeat bottom center;
+    background: url(images/curling-top-horizontal.jpg) no-repeat bottom center;
     }
   }
 </style>
@@ -59,6 +59,9 @@
           <a class="nav-link text-uppercase" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-uppercase" href="#features">Features</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-uppercase" href="#settings">Settings</a>
         </li>
         <li class="nav-item">
@@ -66,14 +69,14 @@
         </li>
       </ul>
       <span class="navbar-text d-none d-lg-block">
-        version 0.003
+        version 0.004
       </span>
     </div>
   </div>
 </nav>
 
 
-<main>  
+<main>
 
 
   <!-- ************************************** -->
@@ -83,7 +86,7 @@
   <!-- ************************************** -->
 
   <section id="training-bg" class="container-fluid text-center p-5 vh-100 bg-cover">
-    <div class="row h-25"> 
+    <div class="row h-25">
       <div class="col d-none d-md-block">
         <p class="lead">Welcome to curling Sweeping Training website, this is a small web application that help you during the home training.</p>
       </div>
@@ -104,6 +107,51 @@
       </div>
     </div>
   </section>
+
+  <!-- ************************************** -->
+  <!-- *                                      -->
+  <!-- *   Features Section                   -->
+  <!-- *                                      -->
+  <!-- ************************************** -->
+
+  <section id="features">
+    <div class="container bg-light bg-gradient text-center text-dark pt-3 px-3 pt-md-5 px-md-5 shadow">
+        <div class="my-3 py-3">
+          <h2 class="display-5 p-1">Features</h2>
+        </div>
+        <div class="bg-white shadow-sm mx-auto" style="width: 80%; border-radius: 21px 21px 0 0;">
+          <div class="container marketing">
+            <div class="row py-5 px-3">
+              <div class="col-4 px-md-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-file-arrow-down-fill" viewBox="0 0 16 16">
+                  <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8 5a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5A.5.5 0 0 1 8 5z"/>
+                </svg>
+                <h5 class="py-3">No download needed</h5>
+                <p>No time needed to install the tool on your device. But if you want you can download all the source code.</p>
+              </div>
+
+              <div class="col-4 px-md-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-phone-fill" viewBox="0 0 16 16">
+                  <path d="M3 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V2zm6 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0z"/>
+                </svg>
+                <h5 class="py-3">Responsive</h5>
+                <p>You can use the tool with a smartphone, tablet, or desktop.</p>
+              </div>
+
+              <div class="col-4 px-md-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                  <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                </svg>
+                <h5 class="py-3">Stay save</h5>
+                <p>Stay health at home doing some healthy sports training in this difficult situation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
 
 
   <!-- ************************************** -->
@@ -162,7 +210,7 @@
               <span class="text-primary float-start align-middle">Audio option</span>
             </div>
             <div class="col input-group">
-              <select id="audioOption" class="form-select" aria-label="Select audio help option"> 
+              <select id="audioOption" class="form-select" aria-label="Select audio help option">
                 <option value="none"selected>none</option>
                 <option value="whistle">whistle</option>
                 <option value="skip" disabled>skip</option>
@@ -181,7 +229,7 @@
   <!-- ************************************** -->
 
   <section id="about">
-    <div id="settings" class="container bg-secondary bg-gradient text-center text-white pt-3 px-3 pt-md-5 px-md-5 shadow">
+    <div class="container bg-secondary bg-gradient text-center text-white pt-3 px-3 pt-md-5 px-md-5 shadow">
         <div class="my-3 py-3">
           <h2 class="display-5 p-1">About</h2>
           <p class="lead">me and this site/project</p>
@@ -189,11 +237,11 @@
         <div class="bg-light shadow-sm mx-auto" style="width: 80%; border-radius: 21px 21px 0 0;">
           <div class="container">
             <div class="row py-3 px-3">
-              <div class="col lead text-secondary text-start">
-                <p>This is my 2020 Christmas holiday project. I am an amateur curling player from Switzerland. Around the World the Covid pandemic restricts the ability to play curling.</p>
-                <p>This situation gives me the idea to generate a web application to help me (and maybe some others) to do something related to curling at home.</p> 
-                <p>This website helps you to train the sweeping at home. You can choose different parameters to personalize your experience.</p>
-                <p class="alert alert-secondary">I am not a software engineer but if you have some ideas or you can write some code, please feel free to do some pull requests (<a class="alert-link" href="https://github.com/frigi83/sweeping-training">repository</a>)</p>
+              <div class="col text-secondary text-start">
+                <p class="lead">This is my 2020 Christmas holiday project. I am an amateur curling player from Switzerland. Around the World the Covid pandemic restricts the ability to play curling.</p>
+                <p class="lead">This situation gives me the idea to generate a web application to help me (and maybe some others) to do something related to curling at home.</p>
+                <p class="lead">This website helps you to train the sweeping at home. You can choose different parameters to personalize your experience.</p>
+                <p class="alert alert-secondary">I am not a software engineer but if you have some ideas or you can write some code, please feel free to do some pull request (<a class="alert-link" href="https://github.com/frigi83/sweeping-training">repository</a>)</p>
               </div>
             </div>
           </div>
@@ -282,7 +330,7 @@ function timerStartStop() {
       startTime = Date.now();
       status = "sweeping";
       styleTrainingSweeping();
-      
+
       break;
     case "Stop":
       stop();
@@ -374,7 +422,7 @@ function styleTrainingStop() {
 }
 
 function playSound(position) {
-  
+
   switch (document.getElementById("audioOption").value) {
     case "none":
       break;
