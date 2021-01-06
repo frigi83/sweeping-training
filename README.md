@@ -19,15 +19,15 @@ https://sweeping.frigi.ch
 
 ## Next improvements
 
-- improve the website style and my English translations
-- pause a training session
-- implement the sound of one or multiple skips
-- add some brain exercise during the sweeping time
-- create a docker container and docker-compose example
+- [ ] improve the website style and my English translations (help needed!)
+- [ ] pause a training session
+- [ ] implement the sound of one or multiple skips (do you have some audio sample?)
+- [ ] add some brain exercise during the sweeping time
+- [ ] create a docker container and docker-compose example for simple hosting
 
 ## Credits
 
-- Background: https://frigi.ch
-- Sound whistler: https://freesound.org/people/AFFRefTony/sounds/455491
-- JS sound library: https://howlerjs.com
-- CSS Framework: https://getbootstrap.com
+- Background image: https://frigi.ch
+- Sound whistler: https://freesound.org/people/AFFRefTony/sounds/455491 (CC BY-NC 3.0 license)
+- JS sound library: https://howlerjs.com (MIT license)
+- CSS Framework: https://getbootstrap.com (MIT license)
