@@ -20,6 +20,7 @@ https://sweeping.frigi.ch
 ## Next improvements
 
 - [ ] improve the website style and my English translations (help needed!)
+- [ ] save settings locally 
 - [ ] pause a training session
 - [ ] implement the sound of one or multiple skips (do you have some audio sample?)
 - [ ] add some brain exercise during the sweeping time
