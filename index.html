@@ -170,43 +170,41 @@
         <div class="container">
 
           <div class="row py-3 px-2 pt-5">
-            <div class="col">
+            <div class="col-sm-1 col-lg-3"></div>
+            <div class="col-6 col-sm-6 col-lg-3">
               <span class="text-primary float-start align-middle">Sweeping time [s]</span>
             </div>
-            <div class="col input-group">
-              <input type="text" id="sweepingTimeValue" class="form-control" readonly>
-              <button id="sweepingTime-minus" class="btn btn-outline-secondary" type="button" onclick="sweepingTimeMinus()" style="width: 2em">-</button>
-              <button id="sweepingTime-plus" class="btn btn-outline-secondary" type="button" onclick="sweepingTimePlus()" style="width: 2em">+</button>
+            <div class="col-5 col-sm-4 col-lg-3">
+              <input type="number" id="sweepingTimeValue" class="form-control" oninput="sweepingTimeValueCheck()">
             </div>
           </div>
 
           <div class="row py-3 px-2">
-            <div class="col">
+            <div class="col-sm-1 col-lg-3"></div>
+            <div class="col-6 col-sm-6 col-lg-3">
               <span class="text-primary float-start align-middle">Pause time [s]</span>
             </div>
-            <div class="col input-group">
-              <input type="text" id="pauseTimeValue" class="form-control" readonly>
-              <button id="pauseTime-minus" class="btn btn-outline-secondary" type="button" style="width: 2em" onclick="pauseTimeMinus()">-</button>
-              <button id="pauseTime-plus" class="btn btn-outline-secondary" type="button" style="width: 2em" onclick="pauseTimePlus()">+</button>
+            <div class="col-5 col-sm-4 col-lg-3">
+              <input type="number" id="pauseTimeValue" class="form-control" oninput="pauseTimeValueCheck()">
             </div>
           </div>
 
           <div class="row py-3 px-2">
-            <div class="col">
+            <div class="col-sm-1 col-lg-3"></div>
+            <div class="col-6 col-sm-6 col-lg-3">
               <span class="text-primary float-start align-middle">Repetitions</span>
             </div>
-            <div class="col input-group">
-              <input type="text" id="repetitionsValue" class="form-control" readonly>
-              <button id="repetitions-minus" class="btn btn-outline-secondary" type="button" style="width: 2em" onclick="repetitionsMinus()">-</button>
-              <button id="repetitions-plus" class="btn btn-outline-secondary" type="button" style="width: 2em" onclick="repetitionsPlus()">+</button>
+            <div class="col-5 col-sm-4 col-lg-3">
+              <input type="number" id="repetitionsValue" class="form-control" oninput="repetitionsValueCheck()">
             </div>
           </div>
 
           <div class="row py-3 px-2 pb-5">
-            <div class="col">
+            <div class="col-sm-1 col-lg-3"></div>
+            <div class="col-6 col-sm-6 col-lg-3">
               <span class="text-primary float-start align-middle">Audio option</span>
             </div>
-            <div class="col input-group">
+            <div class="col-5 col-sm-4 col-lg-3">
               <select id="audioOption" class="form-select" aria-label="Select audio help option" onclick="audioOptionChange()">
                 <option value="none"selected>none</option>
                 <option value="whistle">whistle</option>
@@ -467,57 +465,28 @@ function setStartValues(){
   }
 }
 
-function sweepingTimeMinus() {
-  if (sweepingTime > 1000) {
-    sweepingTime = ((sweepingTime / 1000)-1) * 1000;
-
-    document.getElementById("sweepingTimeValue").value = sweepingTime / 1000;
+function sweepingTimeValueCheck() {
+  if (document.getElementById("sweepingTimeValue").value < 1) {
+    document.getElementById("sweepingTimeValue").value = 1;
   }
-  document.getElementById("saveButtons").classList.remove("d-none");
 }
 
-function sweepingTimePlus() {
-  sweepingTime = ((sweepingTime / 1000)+1) * 1000;
-
-  document.getElementById("sweepingTimeValue").value = sweepingTime / 1000;
-  document.getElementById("saveButtons").classList.remove("d-none");
-}
-
-function pauseTimeMinus() {
-  if (pauseTime > 1000) {
-    pauseTime = ((pauseTime / 1000)-1) * 1000;
-
-    document.getElementById("pauseTimeValue").value = pauseTime / 1000;
+function pauseTimeValueCheck() {
+  if (document.getElementById("pauseTimeValue").value < 1) {
+    document.getElementById("pauseTimeValue").value = 1;
   }
-  document.getElementById("saveButtons").classList.remove("d-none");
 }
 
-function pauseTimePlus() {
-  pauseTime = ((pauseTime / 1000)+1) * 1000;
-
-  document.getElementById("pauseTimeValue").value = pauseTime / 1000;
-  document.getElementById("saveButtons").classList.remove("d-none");
-}
-
-function repetitionsMinus() {
-  if (repetitions > 1) {
-    repetitions = repetitions - 1;
-
-    document.getElementById("repetitionsValue").value = repetitions;
+function repetitionsValueCheck() {
+  if (document.getElementById("repetitionsValue").value < 1) {
+    document.getElementById("repetitionsValue").value = 1;
   }
-  document.getElementById("saveButtons").classList.remove("d-none");
-}
-
-function repetitionsPlus() {
-  repetitions = repetitions + 1;
-
-  document.getElementById("repetitionsValue").value = repetitions;
-  document.getElementById("saveButtons").classList.remove("d-none");
 }
 
 function audioOptionChange() {
   document.getElementById("saveButtons").classList.remove("d-none");
 }
+
 
 // Storage Settings
 function saveSettings() {
