@@ -469,18 +469,24 @@ function sweepingTimeValueCheck() {
   if (document.getElementById("sweepingTimeValue").value < 1) {
     document.getElementById("sweepingTimeValue").value = 1;
   }
+
+  document.getElementById("saveButtons").classList.remove("d-none");
 }
 
 function pauseTimeValueCheck() {
   if (document.getElementById("pauseTimeValue").value < 1) {
     document.getElementById("pauseTimeValue").value = 1;
   }
+
+  document.getElementById("saveButtons").classList.remove("d-none");
 }
 
 function repetitionsValueCheck() {
   if (document.getElementById("repetitionsValue").value < 1) {
     document.getElementById("repetitionsValue").value = 1;
   }
+
+  document.getElementById("saveButtons").classList.remove("d-none");
 }
 
 function audioOptionChange() {
