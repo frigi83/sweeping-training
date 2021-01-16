@@ -2,7 +2,7 @@
 
 This is my 2020 Christmas holiday project. I am an amateur curler from Switzerland. Around the World the Covid pandemic restricts the ability to play curling.
 
-This situation gabe me the idea to generate a web application to help me (and maybe some others) to do something related to curling at home. This website helps you practice sweeping at home. You can choose different parameters to personalize your experience.
+This situation gave me the idea to generate a web application to help me (and maybe some others) to do something related to curling at home. This website helps you practice sweeping at home. You can choose different parameters to personalize your experience.
 
 I am not a software engineer but if you have some ideas or you can write some code, please feel free to do some pull requests.
 
