@@ -4,11 +4,14 @@ const domain = document.location.origin;                // read the basis domain
 
 var timer;
 var startTime;
+var trainingStartTime;
 
 var sweepingTime = urlParams.has('sweepingTime') ? urlParams.get('sweepingTime') * 1000 : 15 * 1000; // ms
 var pauseTime = urlParams.has('pauseTime') ? urlParams.get('pauseTime') * 1000 : 45 * 1000;  // ms
 var repetitions = urlParams.has('repetitions') ? urlParams.get('repetitions') : 10;
 var audioOption = urlParams.has('audio') ? urlParams.get('audio') : "none";
+
+var trainingDuration = (sweepingTime + pauseTime) * repetitions;
 
 var repetitionsCount = 1;
 var startTime = 0; //ms
@@ -17,8 +20,8 @@ var status = "sweeping"; // "sweeping", "pause"
 var soundWhistle = new Howl({
   src: ['sound/whistle.webm', 'sound/whistle.mp3'],
   sprite: {
-    one: [0, 1000],
-    end: [0, 4460]
+    one: [400, 800],
+    end: [400, 4460]
   }
 });
 
@@ -31,8 +34,10 @@ function timerStartStop() {
       document.getElementById("_timer").innerHTML = "inizio conteggio";
       repetitionsCount = 1;
       document.getElementById("divProgressBar").classList.remove("d-none");
+      document.getElementById("divPreset").classList.add("d-none");
       document.getElementById("training-bg").classList.remove("bg-cover");
       startTime = Date.now();
+      trainingStartTime = startTime;
       status = "sweeping";
       styleTrainingSweeping();
 
@@ -50,6 +55,7 @@ function timerStartStop() {
 function timeRefresh () {
   let currentTime = Date.now();
   let elapsed = currentTime - startTime; // ms
+  updateProgressBar();
   if (status === "sweeping") {
     if (elapsed >= sweepingTime) {
       status = "pause";
@@ -66,11 +72,12 @@ function timeRefresh () {
       startTime = currentTime;
       if (repetitionsCount > repetitions) {
         stop();
+        document.getElementById("_timer").innerHTML = "Training completed!";
       } else {
+        
         updateProgressBar();
       }
     } else if (repetitionsCount === repetitions) {
-      document.getElementById("_timer").innerHTML = "Training completed!";
       playSound('end');
       stop();
     } else {
@@ -83,6 +90,7 @@ function stop() {
   clearInterval(timer);
   document.getElementById("btn-start-stop").innerHTML = "Start!";
   document.getElementById("divProgressBar").classList.add("d-none");
+  document.getElementById("divPreset").classList.remove("d-none");
   styleTrainingStop();
 }
 
@@ -92,7 +100,8 @@ function timeToString(ms) {
 }
 
 function updateProgressBar() {
-  document.getElementById("progressBar").style.width = (((repetitionsCount-1)/repetitions)*100)-2+"%";
+
+  document.getElementById("progressBar").style.width = ((Date.now()-trainingStartTime)/trainingDuration)*100+"%";
 }
 
 
@@ -150,6 +159,7 @@ function setStartValues(){
   document.getElementById("audioOption").value = audioOption;
 
   parameterLink();
+  updateTrainningDuration();
 }
 
 function sweepingTimeValueCheck() {
@@ -159,6 +169,7 @@ function sweepingTimeValueCheck() {
 
   sweepingTime = document.getElementById("sweepingTimeValue").value * 1000;
   parameterLink();
+  updateTrainningDuration();
 }
 
 function pauseTimeValueCheck() {
@@ -168,6 +179,7 @@ function pauseTimeValueCheck() {
 
   pauseTime = document.getElementById("pauseTimeValue").value * 1000;
   parameterLink();
+  updateTrainningDuration();
 }
 
 function repetitionsValueCheck() {
@@ -177,12 +189,14 @@ function repetitionsValueCheck() {
 
   repetitions = document.getElementById("repetitionsValue").value;
   parameterLink();
+  updateTrainningDuration();
 }
 
 function audioOptionChange() {
   audioOption = document.getElementById("audioOption").value;
 
   parameterLink();
+  updateTrainningDuration();
 }
 
 
@@ -192,4 +206,8 @@ function parameterLink() {
 
 function copyLink() {
   navigator.clipboard.writeText(document.getElementById("parameterURL").value);
+}
+
+function updateTrainningDuration(){
+  trainingDuration = (sweepingTime + pauseTime) * repetitions;
 }
