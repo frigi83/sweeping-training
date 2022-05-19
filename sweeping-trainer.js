@@ -17,8 +17,8 @@ var status = "sweeping"; // "sweeping", "pause"
 var soundWhistle = new Howl({
   src: ['sound/whistle.webm', 'sound/whistle.mp3'],
   sprite: {
-    one: [0, 1000],
-    end: [0, 4460]
+    one: [400, 800],
+    end: [400, 4460]
   }
 });
 
@@ -31,6 +31,7 @@ function timerStartStop() {
       document.getElementById("_timer").innerHTML = "inizio conteggio";
       repetitionsCount = 1;
       document.getElementById("divProgressBar").classList.remove("d-none");
+      document.getElementById("divPreset").classList.add("d-none");
       document.getElementById("training-bg").classList.remove("bg-cover");
       startTime = Date.now();
       status = "sweeping";
@@ -83,6 +84,7 @@ function stop() {
   clearInterval(timer);
   document.getElementById("btn-start-stop").innerHTML = "Start!";
   document.getElementById("divProgressBar").classList.add("d-none");
+  document.getElementById("divPreset").classList.remove("d-none");
   styleTrainingStop();
 }
 
