@@ -1,8 +1,15 @@
+const queryString = window.location.search;             // read all the parameter in the link
+const urlParams = new URLSearchParams(queryString);
+const domain = document.location.origin;                // read the basis domain
+
 var timer;
 var startTime;
-var sweepingTime = localStorage.getItem('sweepingTime') ? localStorage.getItem('sweepingTime') : 15 * 1000; // ms
-var pauseTime = localStorage.getItem('pauseTime') ? localStorage.getItem('pauseTime') : 45 * 1000;  // ms
-var repetitions = localStorage.getItem('repetitions') ? localStorage.getItem('repetitions') : 10;
+
+var sweepingTime = urlParams.has('sweepingTime') ? urlParams.get('sweepingTime') * 1000 : 15 * 1000; // ms
+var pauseTime = urlParams.has('pauseTime') ? urlParams.get('pauseTime') * 1000 : 45 * 1000;  // ms
+var repetitions = urlParams.has('repetitions') ? urlParams.get('repetitions') : 10;
+var audioOption = urlParams.has('audio') ? urlParams.get('audio') : "none";
+
 var repetitionsCount = 1;
 var startTime = 0; //ms
 var status = "sweeping"; // "sweeping", "pause"
@@ -14,14 +21,6 @@ var soundWhistle = new Howl({
     end: [0, 4460]
   }
 });
-
-// var soundSkip = new Howl({
-//   src: ['sound/skip.webm', 'sound/skip.mp3'],
-//   sprite: {
-//     one: [0, 1000],
-//     end: [0, 4460]
-//   }
-// });
 
 function timerStartStop() {
   switch (document.getElementById("btn-start-stop").innerHTML) {
@@ -129,16 +128,12 @@ function styleTrainingStop() {
 
 function playSound(position) {
 
-  switch (document.getElementById("audioOption").value) {
+  switch (audioOption) {
     case "none":
       break;
 
     case "whistle":
         soundWhistle.play(position);
-      break;
-
-    case "skip":
-        soundSkip.play(position);
       break;
 
     default:
@@ -152,11 +147,9 @@ function setStartValues(){
   document.getElementById("sweepingTimeValue").value = sweepingTime / 1000;
   document.getElementById("pauseTimeValue").value = pauseTime / 1000;
   document.getElementById("repetitionsValue").value = repetitions;
+  document.getElementById("audioOption").value = audioOption;
 
-  if (localStorage.getItem('audioOption')) {
-    document.getElementById("audioOption").value = localStorage.getItem('audioOption');
-    document.getElementById("saveButtons").classList.remove("d-none");
-  }
+  parameterLink();
 }
 
 function sweepingTimeValueCheck() {
@@ -164,7 +157,8 @@ function sweepingTimeValueCheck() {
     document.getElementById("sweepingTimeValue").value = 1;
   }
 
-  document.getElementById("saveButtons").classList.remove("d-none");
+  sweepingTime = document.getElementById("sweepingTimeValue").value * 1000;
+  parameterLink();
 }
 
 function pauseTimeValueCheck() {
@@ -172,7 +166,8 @@ function pauseTimeValueCheck() {
     document.getElementById("pauseTimeValue").value = 1;
   }
 
-  document.getElementById("saveButtons").classList.remove("d-none");
+  pauseTime = document.getElementById("pauseTimeValue").value * 1000;
+  parameterLink();
 }
 
 function repetitionsValueCheck() {
@@ -180,22 +175,21 @@ function repetitionsValueCheck() {
     document.getElementById("repetitionsValue").value = 1;
   }
 
-  document.getElementById("saveButtons").classList.remove("d-none");
+  repetitions = document.getElementById("repetitionsValue").value;
+  parameterLink();
 }
 
 function audioOptionChange() {
-  document.getElementById("saveButtons").classList.remove("d-none");
+  audioOption = document.getElementById("audioOption").value;
+
+  parameterLink();
 }
 
 
-// Storage Settings
-function saveSettings() {
-  localStorage.setItem('sweepingTime',sweepingTime);
-  localStorage.setItem('pauseTime',pauseTime);
-  localStorage.setItem('repetitions',repetitions);
-  localStorage.setItem('audioOption',document.getElementById("audioOption").value);
+function parameterLink() {
+  document.getElementById("parameterURL").value = domain + "/?sweepingTime=" + sweepingTime/1000 + "&pauseTime=" + pauseTime/1000 + "&repetitions=" + repetitions + "&audio=" + audioOption;
 }
 
-function clearSettings() {
-  localStorage.clear();
+function copyLink() {
+  navigator.clipboard.writeText(document.getElementById("parameterURL").value);
 }

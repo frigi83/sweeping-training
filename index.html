@@ -83,7 +83,7 @@
         </li>
       </ul>
       <span class="navbar-text d-none d-lg-block">
-        version 0.004
+        version 0.9
 
       </span>
     </div>
@@ -114,13 +114,33 @@
         <!-- <button class="btn btn-primary" type="button" onclick="playSound('one')">TEST</button> -->
       </div>
     </div>
-    <div class="row  h-25">
+    <div class="row  h-25 d-none">
       <div class="col pt-5">
         <div id="divProgressBar" class="progress shadow-lg d-none">
           <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated shadow-lg" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 1%"></div>
         </div>
       </div>
     </div>
+
+    <div class="row  h-25 justify-content-center align-items-center">
+      <!-- <div class="col-2">
+        <a class="btn btn-lg btn-secondary btn-sm shadow opacity-25" href="/?&sweepingTime=5&pauseTime=45&repetitions=6&audio=whistle">Easy preset</a>
+      </div>
+      <div class="col-2">
+        <a class="btn btn-lg btn-secondary btn-sm shadow opacity-25" href="/?&sweepingTime=8&pauseTime=60&repetitions=6&audio=whistle">Medium preset</a>
+      </div>
+      <div class="col-2">
+        <a class="btn btn-lg btn-secondary btn-sm shadow opacity-25" href="/?&sweepingTime=15&pauseTime=60&repetitions=8&audio=whistle">Hard preset</a>
+      </div> -->
+      <div class="col-4 opacity-25">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <a class="btn btn-lg btn-light btn-sm shadow opacity-25" href="/?&sweepingTime=5&pauseTime=45&repetitions=6&audio=whistle"> Easy </a>
+          <a class="btn btn-lg btn-light btn-sm shadow opacity-25" href="/?&sweepingTime=5&pauseTime=45&repetitions=6&audio=whistle"> Medium </a>
+          <a class="btn btn-lg btn-light btn-sm shadow opacity-25" href="/?&sweepingTime=5&pauseTime=45&repetitions=6&audio=whistle"> Hard </a>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- ************************************** -->
@@ -227,20 +247,20 @@
             </div>
           </div>
 
-          <div id="saveButtons" class="row py-3 px-2 d-flex justify-content-evenly d-none">
-            <div class="col col-md-4">
-              <button class="btn btn-primary" type="button" onclick="saveSettings()">Save settings locally</button>
-            </div>
-            <div class="col col-md-4">
-              <button class="btn btn-primary" type="button" onclick="clearSettings()">Clear local settings</button>
-            </div>
-          </div>
-
           <div class="row py-2">
             <p class="alert alert-primary" role="alert"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
               <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-            </svg> The values of the settings are saved in your browser only when you decide so. If you change the values and do not save, the default values will be used when this page is refreshed.</p>
+            </svg> The values of the settings are not saved in your computer. But if you copy the link bellow, you can access the training app with this settings.</p>
+          </div>
+
+          <div id="copyURL" class="row py-3 px-2 d-flex justify-content-evenly">
+            <div class="col-8 col-sm-8 col-lg-8">
+              <input id="parameterURL" class="form-control" type="text"></input>
+            </div>
+            <div class="col col-md-1">
+              <button class="btn btn-primary" type="button" onclick="copyLink()">copy</button>
+            </div>
           </div>
 
         </div>
